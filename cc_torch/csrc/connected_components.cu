@@ -202,9 +202,6 @@ __global__ void final_counting(const int32_t *label, const int32_t *count_init,
     if (row >= H || col >= W)
         return;
 
-    if (row >= H || col >= W)
-        return;
-
     int32_t y = label[idx];
     if (y > 0) {
         int32_t count_idx = y - 1;
