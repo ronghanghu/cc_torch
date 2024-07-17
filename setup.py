@@ -10,7 +10,7 @@ requirements = ["torch"]
 
 
 def get_extensions():
-    srcs = glob("cc_torch/csrc/*.cu")
+    srcs = ["cc_torch/connected_components.cu"]
     extra_compile_args = {
         "cxx": [],
         "nvcc": [
@@ -25,13 +25,11 @@ def get_extensions():
     if CC is not None:
         extra_compile_args["nvcc"].append("-ccbin={}".format(CC))
 
-    include_dirs = ["cc_torch/csrc"]
-
     ext_modules = [
         CUDAExtension(
             "cc_torch._C",
             srcs,
-            include_dirs=include_dirs,
+            include_dirs=[],
             define_macros=[],
             extra_compile_args=extra_compile_args,
         )
